@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'MolesContainer',
+  props: ['active'],
 };
 </script>
 

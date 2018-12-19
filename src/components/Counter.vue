@@ -8,12 +8,7 @@
 <script>
 export default {
   name: 'Counter',
-  props: ['title'],
-  data: function() {
-    return {
-      counter: 0,
-    };
-  }
+  props: ['title', 'counter'],
 };
 </script>
 

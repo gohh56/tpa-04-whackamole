@@ -9,15 +9,15 @@
       Start Game
     </button>
     <div class="counters-container">
-      <Counter title="Score:"></Counter>
-      <Counter title="High Score:"></Counter>
-      <Counter title="Timer:"></Counter>
+      <Counter title="Score:" v-bind:counter="score"></Counter>
+      <Counter title="High Score:" v-bind:counter="highScore"></Counter>
+      <Counter title="Timer:" v-bind:counter="time"></Counter>
     </div>
     <div class="moles-container gameActive">
-      <MolesContainer></MolesContainer>
-      <MolesContainer></MolesContainer>
-      <MolesContainer></MolesContainer>
-      <MolesContainer></MolesContainer>
+      <MolesContainer v-bind:active="moles[0]"></MolesContainer>
+      <MolesContainer v-bind:active="moles[1]"></MolesContainer>
+      <MolesContainer v-bind:active="moles[2]"></MolesContainer>
+      <MolesContainer v-bind:active="moles[3]"></MolesContainer>
     </div>
   </div>
 </template>
@@ -31,7 +31,15 @@ export default {
   components: {
     Counter,
     MolesContainer,
-  }
+  },
+  data: function() {
+    return {
+      score: 0,
+      highScore: 0,
+      time: 0,
+      moles: [false, false, false, false],
+    };
+  },
 };
 </script>
 
