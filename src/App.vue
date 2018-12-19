@@ -9,6 +9,7 @@
       Start Game
     </button>
     <div class="counters-container">
+<<<<<<< HEAD
       <div class="counter">
         <h2>Score:</h2>
         <h1>0</h1>
@@ -47,6 +48,17 @@
         </div>
         <img class="dirt" src="./assets/dirt.svg" alt="mole dirt"/>
       </div>
+=======
+      <Counter title="Score:" v-bind:counter="score"></Counter>
+      <Counter title="High Score:" v-bind:counter="highScore"></Counter>
+      <Counter title="Timer:" v-bind:counter="time"></Counter>
+    </div>
+    <div class="moles-container gameActive">
+      <MolesContainer v-bind:active="moles[0]"></MolesContainer>
+      <MolesContainer v-bind:active="moles[1]"></MolesContainer>
+      <MolesContainer v-bind:active="moles[2]"></MolesContainer>
+      <MolesContainer v-bind:active="moles[3]"></MolesContainer>
+>>>>>>> a7adbe5... done checkpoint-2
     </div>
   </div>
 </template>
@@ -54,6 +66,21 @@
 <script>
 export default {
   name: 'App',
+<<<<<<< HEAD
+=======
+  components: {
+    Counter,
+    MolesContainer,
+  },
+  data: function() {
+    return {
+      score: 0,
+      highScore: 0,
+      time: 0,
+      moles: [false, false, false, false],
+    };
+  },
+>>>>>>> a7adbe5... done checkpoint-2
 };
 </script>
 
