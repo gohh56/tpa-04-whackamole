@@ -1,10 +1,9 @@
 <template>
-  <div class="mole-container" v-bind:class="{ active: isActive, inactive: !isActive }">
+  <div class="mole-container" v-bind:class="checkActive">
     <div class="mole-image-container">
       <img class="mole" src="../assets/mole.png" alt="mole"/>
     </div>
     <img class="dirt" src="../assets/dirt.svg" alt="mole dirt"/>
-    {{ isActive }}
   </div>
 </template>
 
@@ -12,6 +11,11 @@
 export default {
   name: 'MoleData',
   props: ['isActive'],
+  computed: {
+    checkActive: function() {
+      return this.isActive ? 'active' : 'inactive';
+    }
+  },
 };
 </script>
 
