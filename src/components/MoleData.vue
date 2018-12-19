@@ -1,16 +1,17 @@
 <template>
-  <div class="mole-container inactive">
+  <div class="mole-container" v-bind:class="{ active: isActive, inactive: !isActive }">
     <div class="mole-image-container">
       <img class="mole" src="../assets/mole.png" alt="mole"/>
     </div>
     <img class="dirt" src="../assets/dirt.svg" alt="mole dirt"/>
+    {{ isActive }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MolesContainer',
-  props: ['active'],
+  name: 'MoleData',
+  props: ['isActive'],
 };
 </script>
 
