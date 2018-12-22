@@ -26,7 +26,7 @@ export default {
   components: {
     CounterItem,
     MoleList,
-  }
+  },
   data: function() {
     return {
       score: 0,

@@ -1,9 +1,9 @@
 <template>
   <div class="moles-container gameActive">
-    <MoleListItem :isAcitve="moles[0]" />
-    <MoleListItem :isAcitve="moles[1]" />
-    <MoleListItem :isAcitve="moles[2]" />
-    <MoleListItem :isAcitve="moles[3]" />
+    <MoleListItem :isActive="moles[0]" />
+    <MoleListItem :isActive="moles[1]" />
+    <MoleListItem :isActive="moles[2]" />
+    <MoleListItem :isActive="moles[3]" />
   </div>
 </template>
 
