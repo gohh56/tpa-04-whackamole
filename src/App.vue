@@ -26,8 +26,8 @@ import MoleData from './components/MoleData.vue';
 export default {
   name: 'App',
   components: {
-    Counter,
-    MoleData,
+    CounterItem,
+    MoleList,
   },
   data: function() {
     return {
