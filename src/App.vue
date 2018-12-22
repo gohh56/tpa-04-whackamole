@@ -9,28 +9,23 @@
       Start Game
     </button>
     <div class="counters-container">
-      <Counter title="Score:"></Counter>
-      <Counter title="High Score:"></Counter>
-      <Counter title="Timer:"></Counter>
+      <CounterItem title="High Score:" />
+      <CounterItem title="Score:" />
+      <CounterItem title="Timer:" />
     </div>
-    <div class="moles-container gameActive">
-      <MolesContainer></MolesContainer>
-      <MolesContainer></MolesContainer>
-      <MolesContainer></MolesContainer>
-      <MolesContainer></MolesContainer>
-    </div>
+    <MoleList />
   </div>
 </template>
 
 <script>
-import Counter from './components/Counter.vue';
-import MolesContainer from './components/MolesContainer.vue';
+import CounterItem from './components/CounterItem.vue';
+import MoleList from './components/MoleList.vue';
 
 export default {
   name: 'App',
   components: {
-    Counter,
-    MolesContainer,
+    CounterItem,
+    MoleList,
   }
 };
 </script>
@@ -57,17 +52,5 @@ export default {
 .counters-container {
   display: flex;
   justify-content: space-evenly;
-}
-
-.moles-container {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-}
-
-.moles-container.game-active {
-  opacity: 1;
 }
 </style>

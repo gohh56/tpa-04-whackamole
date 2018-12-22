@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'Counter',
+  name: 'CounterItem',
   props: ['title'],
   data: function() {
     return {
