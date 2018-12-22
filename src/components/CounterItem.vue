@@ -7,8 +7,17 @@
 
 <script>
 export default {
-  name: 'Counter',
-  props: ['title', 'counter'],
+  name: 'CounterItem',
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    counter: {
+      type: Number,
+      required: true
+    },
+  },
 };
 </script>
 

@@ -1,9 +1,9 @@
 <template>
   <div class="moles-container gameActive">
-    <MoleListItem :isActive="moles[0]" />
-    <MoleListItem :isActive="moles[1]" />
-    <MoleListItem :isActive="moles[2]" />
-    <MoleListItem :isActive="moles[3]" />
+    <MoleListItem
+     v-for="(mole, index) in moles"
+     :key="index"
+     :is-active="mole" />
   </div>
 </template>
 
