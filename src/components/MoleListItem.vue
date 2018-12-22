@@ -9,8 +9,13 @@
 
 <script>
 export default {
-  name: 'MolesContainer',
-  props: ['active'],
+  name: 'MoleListItem',
+  props: {
+    isActive: {
+      type: Boolean,
+      required: true
+    }
+  },
 };
 </script>
 

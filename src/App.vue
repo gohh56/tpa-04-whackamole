@@ -9,35 +9,29 @@
       Start Game
     </button>
     <div class="counters-container">
-      <Counter title="Score:" v-bind:counter="score"></Counter>
-      <Counter title="High Score:" v-bind:counter="highScore"></Counter>
-      <Counter title="Timer:" v-bind:counter="time"></Counter>
+      <CounterItem title="High Score:" :counter="score" />
+      <CounterItem title="Score:" :counter="highScore" />
+      <CounterItem title="Timer:" :counter="time" />
     </div>
-    <div class="moles-container gameActive">
-      <MolesContainer v-bind:active="moles[0]"></MolesContainer>
-      <MolesContainer v-bind:active="moles[1]"></MolesContainer>
-      <MolesContainer v-bind:active="moles[2]"></MolesContainer>
-      <MolesContainer v-bind:active="moles[3]"></MolesContainer>
-    </div>
+    <MoleList />
   </div>
 </template>
 
 <script>
-import Counter from './components/Counter.vue';
-import MolesContainer from './components/MolesContainer.vue';
+import CounterItem from './components/CounterItem.vue';
+import MoleList from './components/MoleList.vue';
 
 export default {
   name: 'App',
   components: {
-    Counter,
-    MolesContainer,
-  },
+    CounterItem,
+    MoleList,
+  }
   data: function() {
     return {
       score: 0,
       highScore: 0,
-      time: 0,
-      moles: [false, false, false, false],
+      time: 0
     };
   },
 };
@@ -65,17 +59,5 @@ export default {
 .counters-container {
   display: flex;
   justify-content: space-evenly;
-}
-
-.moles-container {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-}
-
-.moles-container.game-active {
-  opacity: 1;
 }
 </style>
