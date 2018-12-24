@@ -5,6 +5,7 @@
     </h1>
     <button
       class="start-game"
+      v-on:click="startGame"
     >
       Start Game
     </button>
@@ -31,8 +32,31 @@ export default {
     return {
       score: 0,
       highScore: 0,
-      time: 0
+      time: 0,
+      gameIntervId: null,
     };
+  },
+  methods: {
+    startGame: function() {
+      this.time = 20;
+      this.startTimer();
+    },
+    endGame: function() {
+      this.stopTimer();
+    },
+    countDownTime: function() {
+      if (this.time === 0) {
+        this.endGame();
+      } else {
+        this.time = this.time - 1;
+      }
+    },
+    startTimer: function() {
+      this.gameIntervId = setInterval(this.countDownTime, 1000);
+    },
+    stopTimer: function() {
+      clearInterval(this.gameIntervId);
+    },
   },
 };
 </script>
