@@ -9,9 +9,9 @@
       Start Game
     </button>
     <div class="counters-container">
-      <CounterItem title="High Score:" />
-      <CounterItem title="Score:" />
-      <CounterItem title="Timer:" />
+      <CounterItem title="High Score:" :counter="score" />
+      <CounterItem title="Score:" :counter="highScore" />
+      <CounterItem title="Timer:" :counter="time" />
     </div>
     <MoleList />
   </div>
@@ -26,7 +26,14 @@ export default {
   components: {
     CounterItem,
     MoleList,
-  }
+  },
+  data: function() {
+    return {
+      score: 0,
+      highScore: 0,
+      time: 0
+    };
+  },
 };
 </script>
 

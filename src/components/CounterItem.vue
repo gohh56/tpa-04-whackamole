@@ -8,12 +8,16 @@
 <script>
 export default {
   name: 'CounterItem',
-  props: ['title'],
-  data: function() {
-    return {
-      counter: 0,
-    };
-  }
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    counter: {
+      type: Number,
+      required: true
+    },
+  },
 };
 </script>
 

@@ -1,9 +1,9 @@
 <template>
   <div class="moles-container gameActive">
-    <MoleListItem />
-    <MoleListItem />
-    <MoleListItem />
-    <MoleListItem />
+    <MoleListItem :isActive="moles[0]" />
+    <MoleListItem :isActive="moles[1]" />
+    <MoleListItem :isActive="moles[2]" />
+    <MoleListItem :isActive="moles[3]" />
   </div>
 </template>
 
@@ -12,6 +12,11 @@ import MoleListItem from './MoleListItem.vue';
 
 export default {
   name: 'MoleList',
+  data: function() {
+    return {
+      moles: [false, false, false, false]
+    };
+  },
   components: {
     MoleListItem,
   }

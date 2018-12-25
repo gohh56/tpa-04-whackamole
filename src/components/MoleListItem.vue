@@ -10,6 +10,12 @@
 <script>
 export default {
   name: 'MoleListItem',
+  props: {
+    isActive: {
+      type: Boolean,
+      required: true
+    }
+  },
 };
 </script>
 
