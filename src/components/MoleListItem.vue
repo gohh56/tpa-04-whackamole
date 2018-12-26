@@ -1,5 +1,5 @@
 <template>
-  <div class="mole-container inactive">
+  <div class="mole-container" :class="checkActive">
     <div class="mole-image-container">
       <img class="mole" src="../assets/mole.png" alt="mole"/>
     </div>
@@ -14,6 +14,11 @@ export default {
     isActive: {
       type: Boolean,
       required: true
+    }
+  },
+  computed: {
+    checkActive() {
+      return this.isActive ? 'active' : 'inactive';
     }
   },
 };
