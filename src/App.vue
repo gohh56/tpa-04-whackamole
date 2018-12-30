@@ -14,26 +14,34 @@
       <CounterItem title="Score:" :counter="highScore" />
       <CounterItem title="Timer:" :counter="time" />
     </div>
-    <MoleList />
+    <MoleList>
+      <MoleListItem
+        v-for="(mole, index) in moles"
+        :key="index"
+        :is-active="mole" 
+      />
+    </MoleList>
   </div>
 </template>
 
 <script>
 import CounterItem from './components/CounterItem.vue';
 import MoleList from './components/MoleList.vue';
+import MoleListItem from './components/MoleListItem.vue';
 
 export default {
   name: 'App',
   components: {
     CounterItem,
     MoleList,
+    MoleListItem,
   },
   data: function() {
     return {
       score: 0,
       highScore: 0,
       time: 0,
-      gameIntervId: null,
+      moles: [false, false, false, true]
     };
   },
   methods: {

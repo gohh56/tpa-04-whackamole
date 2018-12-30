@@ -1,25 +1,12 @@
 <template>
   <div class="moles-container gameActive">
-    <MoleListItem
-     v-for="(mole, index) in moles"
-     :key="index"
-     :is-active="mole" />
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import MoleListItem from './MoleListItem.vue';
-
 export default {
   name: 'MoleList',
-  data: function() {
-    return {
-      moles: [false, false, false, false]
-    };
-  },
-  components: {
-    MoleListItem,
-  }
 };
 </script>
 
