@@ -5,20 +5,31 @@
     </h1>
     <button
       class="start-game"
+      :disabled="isGameActive"
       v-on:click="startGame"
     >
       Start Game
     </button>
     <div class="counters-container">
-      <CounterItem title="High Score:" :counter="score" />
-      <CounterItem title="Score:" :counter="highScore" />
-      <CounterItem title="Timer:" :counter="time" />
+      <CounterItem
+        title="Score:"
+        :counter="score"
+      />
+      <CounterItem
+        title="High Score:"
+        :counter="highScore"
+      />
+      <CounterItem
+        title="Timer:"
+        :counter="time"
+      />
     </div>
-    <MoleList>
+    <MoleList :is-game-active="isGameActive">
       <MoleListItem
         v-for="(mole, index) in moles"
         :key="index"
         :is-active="mole" 
+        v-on:whack="whackMole(index)"
       />
     </MoleList>
   </div>
@@ -41,16 +52,29 @@ export default {
       score: 0,
       highScore: 0,
       time: 0,
-      moles: [false, false, false, true]
+      isGameActive: false,
+      gameIntervId: null,
+      moleActiveIntervId: null,
+      moleinactiveIntervId: null,
+      moles: [false, false, false, false]
     };
   },
   methods: {
     startGame: function() {
+      this.isGameActive = true;
       this.time = 20;
       this.startTimer();
+      this.startMoles();
     },
     endGame: function() {
+      this.stopMoles();
+      this.moles = [false, false, false, false];
       this.stopTimer();
+      if (this.score > this.highScore) {
+        this.highScore = this.score;
+      }
+      this.score = 0;
+      this.isGameActive = false;
     },
     countDownTime: function() {
       if (this.time === 0) {
@@ -65,6 +89,26 @@ export default {
     stopTimer: function() {
       clearInterval(this.gameIntervId);
     },
+    whackMole: function(index) {
+      this.score += 1;
+      this.moles[index] = false;
+    },
+    activeRandomMole: function() {
+      let activeMoleIndex = Math.floor(Math.random() * this.moles.length);
+      this.moles[activeMoleIndex] = true;
+    },
+    inactiveRandomMole: function() {
+      let inactiveMoleIndex = Math.floor(Math.random() * this.moles.length);
+      this.moles[inactiveMoleIndex] = false;
+    },
+    startMoles: function() {
+      this.moleActiveIntervId = setInterval(this.activeRandomMole, 500);
+      this.moleinactiveIntervId = setInterval(this.inactiveRandomMole, 1000);
+    },
+    stopMoles: function() {
+      clearInterval(this.moleActiveIntervId);
+      clearInterval(this.moleinactiveIntervId);
+    }
   },
 };
 </script>
