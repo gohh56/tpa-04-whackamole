@@ -1,7 +1,7 @@
 <template>
   <div class="mole-container" :class="checkActive">
     <div class="mole-image-container">
-      <img class="mole" v-on:click="whackMole" src="../assets/mole.png" alt="mole"/>
+      <img class="mole" @click="whackMole" src="../assets/mole.png" alt="mole"/>
     </div>
     <img class="dirt" src="../assets/dirt.svg" alt="mole dirt"/>
   </div>

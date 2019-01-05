@@ -6,7 +6,7 @@
     <button
       class="start-game"
       :disabled="isGameActive"
-      v-on:click="startGame"
+      @click="startGame"
     >
       Start Game
     </button>
@@ -29,7 +29,7 @@
         v-for="(mole, index) in moles"
         :key="index"
         :is-active="mole" 
-        v-on:whack="whackMole(index)"
+        @whack="whackMole(index)"
       />
     </MoleList>
   </div>
@@ -39,6 +39,7 @@
 import CounterItem from './components/CounterItem.vue';
 import MoleList from './components/MoleList.vue';
 import MoleListItem from './components/MoleListItem.vue';
+import getIndex from './mixins/util/getIndex.js';
 
 export default {
   name: 'App',
@@ -47,6 +48,7 @@ export default {
     MoleList,
     MoleListItem,
   },
+  mixins: [getIndex],
   data: function() {
     return {
       score: 0,
@@ -94,12 +96,12 @@ export default {
       this.moles[index] = false;
     },
     activeRandomMole: function() {
-      let activeMoleIndex = Math.floor(Math.random() * this.moles.length);
-      this.moles[activeMoleIndex] = true;
+      const moleIndex = this.getIndex(this.moles.length);
+      this.moles[moleIndex] = true;
     },
     inactiveRandomMole: function() {
-      let inactiveMoleIndex = Math.floor(Math.random() * this.moles.length);
-      this.moles[inactiveMoleIndex] = false;
+      const moleIndex = this.getIndex(this.moles.length);
+      this.moles[moleIndex] = false;
     },
     startMoles: function() {
       this.moleActiveIntervId = setInterval(this.activeRandomMole, 500);
