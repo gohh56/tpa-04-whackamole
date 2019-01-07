@@ -5,20 +5,31 @@
     </h1>
     <button
       class="start-game"
-      v-on:click="startGame"
+      :disabled="isGameActive"
+      @click="startGame"
     >
       Start Game
     </button>
     <div class="counters-container">
-      <CounterItem title="High Score:" :counter="score" />
-      <CounterItem title="Score:" :counter="highScore" />
-      <CounterItem title="Timer:" :counter="time" />
+      <CounterItem
+        title="Score:"
+        :counter="score"
+      />
+      <CounterItem
+        title="High Score:"
+        :counter="highScore"
+      />
+      <CounterItem
+        title="Timer:"
+        :counter="time"
+      />
     </div>
-    <MoleList>
+    <MoleList :is-game-active="isGameActive">
       <MoleListItem
         v-for="(mole, index) in moles"
         :key="index"
         :is-active="mole" 
+        @whack="whackMole(index)"
       />
     </MoleList>
   </div>
@@ -28,6 +39,7 @@
 import CounterItem from './components/CounterItem.vue';
 import MoleList from './components/MoleList.vue';
 import MoleListItem from './components/MoleListItem.vue';
+import getIndex from './mixins/util/getIndex.js';
 
 export default {
   name: 'App',
@@ -36,21 +48,35 @@ export default {
     MoleList,
     MoleListItem,
   },
+  mixins: [getIndex],
   data: function() {
     return {
       score: 0,
       highScore: 0,
       time: 0,
-      moles: [false, false, false, true]
+      isGameActive: false,
+      gameIntervId: null,
+      moleActiveIntervId: null,
+      moleinactiveIntervId: null,
+      moles: [false, false, false, false]
     };
   },
   methods: {
     startGame: function() {
+      this.isGameActive = true;
       this.time = 20;
       this.startTimer();
+      this.startMoles();
     },
     endGame: function() {
+      this.stopMoles();
+      this.moles = [false, false, false, false];
       this.stopTimer();
+      if (this.score > this.highScore) {
+        this.highScore = this.score;
+      }
+      this.score = 0;
+      this.isGameActive = false;
     },
     countDownTime: function() {
       if (this.time === 0) {
@@ -65,6 +91,26 @@ export default {
     stopTimer: function() {
       clearInterval(this.gameIntervId);
     },
+    whackMole: function(index) {
+      this.score += 1;
+      this.moles[index] = false;
+    },
+    activeRandomMole: function() {
+      const moleIndex = this.getIndex(this.moles.length);
+      this.moles[moleIndex] = true;
+    },
+    inactiveRandomMole: function() {
+      const moleIndex = this.getIndex(this.moles.length);
+      this.moles[moleIndex] = false;
+    },
+    startMoles: function() {
+      this.moleActiveIntervId = setInterval(this.activeRandomMole, 500);
+      this.moleinactiveIntervId = setInterval(this.inactiveRandomMole, 1000);
+    },
+    stopMoles: function() {
+      clearInterval(this.moleActiveIntervId);
+      clearInterval(this.moleinactiveIntervId);
+    }
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="moles-container gameActive">
+  <div class="moles-container" :class="checkGameActive">
     <slot></slot>
   </div>
 </template>
@@ -7,6 +7,17 @@
 <script>
 export default {
   name: 'MoleList',
+  props: {
+    isGameActive: {
+      type: Boolean,
+      required: true
+    }
+  },
+  computed: {
+    checkGameActive() {
+      return this.isGameActive ? 'game-active' : '';
+    }
+  }
 };
 </script>
 
